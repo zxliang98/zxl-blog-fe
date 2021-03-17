@@ -1,32 +1,24 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view />
+    <div class="bot">
+      <el-link href="https://beian.miit.gov.cn/" target="_blank"
+        >豫ICP备20011447号-1</el-link
+      >
+    </div>
   </div>
 </template>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  .bot {
+    width: 100%;
+    height: 20px;
+    background-color: #fff;
+    text-align: center;
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+    position: fixed;
+    bottom: 0;
   }
 }
 </style>
