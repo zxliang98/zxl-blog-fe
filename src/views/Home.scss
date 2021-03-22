@@ -1,0 +1,50 @@
+.home {
+  .el-container {
+    .el-aside {
+      min-height: 100vh;
+      border-right: 1px solid rgb(226, 226, 226);
+      ::v-deep .el-input {
+        padding: 6px 0;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgb(226, 226, 226);
+        .el-input__inner {
+          border: 0 none;
+          outline: none;
+        }
+      }
+    }
+    .el-container {
+      position: relative;
+      .ctrl-line {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 5px;
+        height: 100vh;
+        color: rgb(179, 179, 179);
+        cursor: ew-resize;
+        &:hover {
+          color: rgb(46, 46, 46);
+        }
+        i {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%) translateX(-10px);
+        }
+      }
+      .el-header {
+        display: flex;
+        align-items: center;
+        i {
+          font-size: 26px;
+          color: rgb(179, 179, 179);
+          &:hover {
+            color: rgb(46, 46, 46);
+          }
+        }
+      }
+      .el-main {
+      }
+    }
+  }
+}
