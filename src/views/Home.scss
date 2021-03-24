@@ -1,6 +1,7 @@
 .home {
   .el-container {
     .el-aside {
+      transition: width .2s linear;
       min-height: 100vh;
       border-right: 1px solid rgb(226, 226, 226);
       ::v-deep .el-input {

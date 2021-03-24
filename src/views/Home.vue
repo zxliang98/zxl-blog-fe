@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <el-container>
-      <el-aside width="250px">
+      <el-aside :width="`${asideWidth}px`">
         <el-input placeholder="输入关键词" v-model="filterText"></el-input>
         <el-tree
           class="filter-tree"
@@ -9,19 +9,25 @@
           :props="defaultProps"
           :filter-node-method="filterNode"
           highlight-current
+          @node-click="handleNodeClick"
           ref="tree"
         >
         </el-tree>
       </el-aside>
       <el-container>
-        <div class="ctrl-line">
+        <div class="ctrl-line" v-show="!isCollapse">
           <i class="el-icon-s-promotion"></i>
         </div>
         <el-header height="52px">
-          <i class="el-icon-d-arrow-left"></i>
+          <i
+            @click="collapseIt"
+            :class="
+              isCollapse ? 'el-icon-d-arrow-right' : 'el-icon-d-arrow-left'
+            "
+          ></i>
         </el-header>
         <el-main>
-          <el-collapse v-model="activeName" accordion>
+          <el-collapse v-model="activeName" @change="handleNodeClick" accordion>
             <el-collapse-item title="一致性 Consistency" name="1">
               <div>
                 与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；
@@ -79,7 +85,13 @@ export default {
               children: [
                 {
                   id: 9,
-                  label: "三级 1-1-1"
+                  label: "三级 1-1-1",
+                  children: [
+                    {
+                      id: 11,
+                      label: "四级 1-1-1-1"
+                    }
+                  ]
                 },
                 {
                   id: 10,
@@ -121,7 +133,10 @@ export default {
       defaultProps: {
         children: "children",
         label: "label"
-      }
+      },
+      isCollapse: false,
+      asideWidth: 250,
+      laseAsideWidth: 0
     };
   },
   watch: {
@@ -134,6 +149,14 @@ export default {
     filterNode(value, data) {
       if (!value) return true;
       return data.label.indexOf(value) !== -1;
+    },
+    handleNodeClick(data) {
+      console.log(data);
+    },
+    collapseIt() {
+      this.isCollapse = !this.isCollapse;
+      this.asideWidth && (this.laseAsideWidth = this.asideWidth);
+      this.asideWidth = this.isCollapse ? 0 : this.laseAsideWidth;
     }
   }
 };
