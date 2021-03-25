@@ -14,7 +14,7 @@
   .bot {
     width: 100%;
     height: 20px;
-    background-color: #fff;
+    // background-color: #fff;
     text-align: center;
 
     position: fixed;
