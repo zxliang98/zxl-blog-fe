@@ -1,5 +1,5 @@
 <template>
-  <div class="list">index</div>
+  <div class="welcome">welcome</div>
 </template>
 
 <script>

@@ -5,6 +5,13 @@
       min-height: 100vh;
       background-color: rgb(240, 240, 240);
       border-right: 1px solid rgb(226, 226, 226);
+      .welcome {
+        font-size: 16px;
+        line-height: 32px;
+        cursor: pointer;
+        color: #333;
+        margin-left: 28px;
+      }
       .el-input {
         padding: 6px 0;
         margin-bottom: 10px;
@@ -67,11 +74,6 @@
           &:hover {
             color: rgb(46, 46, 46);
           }
-        }
-      }
-      .el-main {
-        .el-link {
-          margin-right: 20px;
         }
       }
     }

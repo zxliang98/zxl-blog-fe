@@ -3,7 +3,9 @@
     <el-container>
       <el-aside :width="`${asideWidth}px`">
         <el-input placeholder="输入关键词" v-model="filterText"></el-input>
+        <div class="welcome" @click="handleNodeClick(0)">welcome</div>
         <el-tree
+          :key="elTreeKey"
           class="filter-tree"
           :data="data"
           :props="defaultProps"
@@ -27,21 +29,7 @@
           ></i>
         </el-header>
         <el-main>
-          <el-collapse v-model="activeName" @change="handleNodeClick" accordion>
-            <el-collapse-item
-              v-for="item in data"
-              :key="item.id"
-              :title="item.label"
-              :name="item.id"
-            >
-              <div>
-                {{ item.des }}
-              </div>
-              <el-link v-for="i in item.children" :key="i.id">{{
-                i.label
-              }}</el-link>
-            </el-collapse-item>
-          </el-collapse>
+          <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -55,69 +43,15 @@ export default {
     return {
       activeName: "1",
       filterText: "",
-      data: [
-        {
-          id: 1,
-          label: "一级 1",
-          children: [
-            {
-              id: 4,
-              label: "二级 1-1",
-              children: [
-                {
-                  id: 9,
-                  label: "三级 1-1-1",
-                  children: [
-                    {
-                      id: 11,
-                      label: "四级 1-1-1-1"
-                    }
-                  ]
-                },
-                {
-                  id: 10,
-                  label: "三级 1-1-2"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: 2,
-          label: "一级 2",
-          children: [
-            {
-              id: 5,
-              label: "二级 2-1"
-            },
-            {
-              id: 6,
-              label: "二级 2-2"
-            }
-          ]
-        },
-        {
-          id: 3,
-          label: "一级 3",
-          children: [
-            {
-              id: 7,
-              label: "二级 3-1"
-            },
-            {
-              id: 8,
-              label: "二级 3-2"
-            }
-          ]
-        }
-      ],
+      data: [],
       defaultProps: {
         children: "children",
         label: "label"
       },
       isCollapse: false,
       asideWidth: 250,
-      laseAsideWidth: 0
+      laseAsideWidth: 0,
+      elTreeKey: 0
     };
   },
   watch: {
@@ -133,6 +67,16 @@ export default {
     },
     handleNodeClick(data) {
       console.log(data);
+      let id = data.id ? data.id : 0;
+      if (this.currentId === id) return;
+      this.currentId = id;
+      if (id) {
+        this.$router.push({ name: "Article", params: { id } });
+      } else {
+        this.elTreeKey = Date.now();
+        this.$router.push({ name: "Welcome" });
+      }
+      console.log(this.$route);
     },
     collapseIt() {
       this.isCollapse = !this.isCollapse;
