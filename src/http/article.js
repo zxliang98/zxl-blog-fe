@@ -6,3 +6,11 @@ export const getArticleList = params => {
     params
   });
 };
+
+export const getArticle = params => {
+  return instance({
+    url: "/article",
+    methods: "get",
+    params
+  });
+};

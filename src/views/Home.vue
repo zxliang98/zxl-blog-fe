@@ -27,17 +27,26 @@
               isCollapse ? 'el-icon-d-arrow-right' : 'el-icon-d-arrow-left'
             "
           ></i>
+          <!-- <zxl-bread></zxl-bread> -->
+          <el-button
+            @click="$router.go(-1)"
+            style="margin-left: 20px"
+            type="text"
+            >back</el-button
+          >
         </el-header>
         <el-main>
           <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>
+    <el-backtop target=".el-main"></el-backtop>
   </div>
 </template>
 
 <script>
 import { getCatalog } from "@/http/catalog";
+// import zxlBread from './../components/zxl-bread/zxl-bread'
 export default {
   data() {
     return {
@@ -59,7 +68,9 @@ export default {
       this.$refs.tree.filter(val);
     }
   },
-
+  components: {
+    // zxlBread
+  },
   methods: {
     filterNode(value, data) {
       if (!value) return true;

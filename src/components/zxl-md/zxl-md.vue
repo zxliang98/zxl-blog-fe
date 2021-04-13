@@ -14,11 +14,21 @@
 <script>
 export default {
   data() {
-    return {
-      content: "dfshak"
-    };
+    return {};
+  },
+  props: {
+    content: {
+      type: String,
+      default() {
+        return "";
+      }
+    }
   }
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.zxl-md {
+  max-width: 1000px;
+}
+</style>

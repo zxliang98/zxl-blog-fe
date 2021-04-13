@@ -76,6 +76,9 @@
           }
         }
       }
+      .el-main {
+        max-height: calc(100vh - 52px);
+      }
     }
   }
 }
